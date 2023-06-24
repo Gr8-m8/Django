@@ -30,9 +30,6 @@ table{
     background-color: #000;
 }
 
-thead{
-}
-
 thead tr{
     background-color: #aa0 !important;
     border-bottom: 0.2em solid #000;
