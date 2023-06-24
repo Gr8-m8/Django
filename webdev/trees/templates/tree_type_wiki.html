@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+
+{% block title %}
+    Tree Wiki
+{% endblock %}
+
+{% block content %}
+    <h1>{{ tree_type.latin }} {{ tree_type.se }}</h1>
+    <p>{{ tree_type.info }}</p>
+
+    <a href="/tree_type_list">Return</a>
+{% endblock %}

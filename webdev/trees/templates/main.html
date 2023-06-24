@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="{% static 'MinimalTree.ico' %}">
+        <title>ekobas - {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'main.css' %}">
+    </head>
+    <body>
+
+        <div id="header" class="content_box">
+            <div id="header_content" class="content">
+                <a class="header_content_link" href="/"><img src="{% static 'MinimalTree.ico' %}" id="header_content_icon"></img></a>
+                <a class="header_content_link" href="/">HOME</a>
+                <a class="header_content_link" href="/tree_type_list/" >Tree List</a>
+            </div>
+        </div>
+
+        <div id="center" class="content_box">
+            <div id="center_content" class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+
+        <div id="footer" class="content_box">
+            <div id="footer_content" class="content">
+                Footer
+            </div>
+        </div>
+
+    </body>
+</html>

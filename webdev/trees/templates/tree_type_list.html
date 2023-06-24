@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+
+{% block title %}
+    Tree List
+{% endblock %}
+
+{% block content %}
+    <h1>Tree List</h1>
+    <table cellspacing="0" class="margin_auto">
+        <thead>
+            <tr>
+                <td>
+                    Latin
+                </td>
+                <td>
+                    Swedish
+                </td>
+                <td>
+                    Information
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tree_type in tree_type_list %}
+                <tr>
+                    <td>
+                        {{ tree_type.latin }}
+                    </td>
+                    <td>
+                        {{ tree_type.se }}
+                    </td>
+                    <td>
+                        <a href="{{ tree_type.id }}">Wiki Link</a>
+                    </td>
+                </tr>
+            </a>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
