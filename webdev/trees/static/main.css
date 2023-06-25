@@ -2,7 +2,7 @@
 
 body{
     background-color: #0f0;
-    font-size: 18px;
+    font-size: 3vh /*18px*/;
 }
 
 h1{
@@ -32,17 +32,15 @@ table{
 
 thead tr{
     background-color: #aa0 !important;
-    border-bottom: 0.2em solid #000;
 }
 
 thead td{
     padding: 0.5em 2em;
     font-weight: bold;
-    border-right: 0.1em solid #660;
+    border-right: /*0.5vw*/ 0.1em solid #660;
 }
 
 tr{
-    border-bottom: 0.5em solid #000;
     background-color: #330;
 }
 
@@ -52,7 +50,7 @@ tr:nth-child(even){
 }
 
 td{
-    border-right: 0.1em solid #aa0;
+    border-right: /*0.5vw*/ 0.1em solid #aa0;
     padding: 0.25em 2em;
 }
 
@@ -71,46 +69,54 @@ td:last-child{
     background-color: #050;
     color: #0f0;
     width: 99%;
-    min-height: 6em;
+    min-height: 5em /*10vh*/;
     margin: auto;
 }
 
 #header{
-    margin-bottom: 1.5em;
+    margin-bottom: 1em /*3vh*/;
 }
 
 #footer{
-    margin-top: 1.5em;
+    margin-top: 1em /*3vh*/;
 }
 
 #center{
-    min-height:100vh;
-    width: 50vmax;
-    min-width: fit-content;
+    min-height:90vh;
+    /*min-width: 66vmax;*/
+    /*width: 66vmax;*/
+    /*min-width: 408px; /*470px;*/
+    
+    max-width: fit-content;
 }
 
 /* CONTENT:  */
 
 .content{
-    padding: 1em;
+    padding: 1em 1em/*5vh 1vw*/;
+    overflow: hidden;
 }
 
 #center_content{
-    padding: 3em;
+    padding: 1em 2em/*5vh 1vw*/;
+}
+
+#center_content div{
     overflow: scroll;
 }
 
 #header_content{
-    height: 4em;
+    height: calc(5em - 2em)
 }
 
 .header_content_link{
-    margin: 2em 1em;
+    margin: 0.5em;
 }
 
 #header_content_icon{
     height: 100%;
     width: auto;
+    margin-left: -0.75em;
 }
 
 /* --- LANDING --- */
@@ -127,12 +133,12 @@ td:last-child{
 
 #search_field{
     overflow: hidden;
-    margin-bottom: 1em;
+    margin-bottom: 1em /*5vh*/;
 }
 
 #advanced_search_field{
     overflow: hidden;
-    margin-top: 1em;
+    margin-top: 1em /*5vh*/;
 }
 
 .search_field_active{
@@ -154,10 +160,10 @@ td:last-child{
     width: 100%;
     text-align: center;
     padding: 0.5em;
+    font-size: 1em;
 }
 
 #advanced_fields_link{
-    display: inline-block;
     width: 100%;
     text-align: right;
     user-select: none; 
