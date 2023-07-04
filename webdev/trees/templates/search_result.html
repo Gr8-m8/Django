@@ -1,0 +1,38 @@
+{% extends "landing.html" %}
+
+{% block search_result %}
+    <h1>Result for '{{ search_item }}'</h1>
+    <div>
+        <table cellspacing="0" class="margin_auto">
+            <thead>
+                <tr>
+                    <td>
+                        Latin
+                    </td>
+                    <td>
+                        Swedish
+                    </td>
+                    <td>
+                        Information
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tree_type in tree_type_list %}
+                    <tr>
+                        <td>
+                            {{ tree_type.latin }}
+                        </td>
+                        <td>
+                            {{ tree_type.se }}
+                        </td>
+                        <td>
+                            <a href="/tree_type_list/{{ tree_type.id }}">Wiki Link</a>
+                        </td>
+                    </tr>
+                </a>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
