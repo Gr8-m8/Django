@@ -3,6 +3,8 @@
 body{
     background-color: #0f0;
     font-size: 3vh /*18px*/;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 h1{
@@ -121,8 +123,13 @@ td:last-child{
 
 /* --- LANDING --- */
 /* LANDING SEARCHBAR*/
-#landing_searchbar{
-    width: 100%;
+#search_field{
+    overflow: hidden;
+    margin-bottom: 1em /*5vh*/;
+}
+
+/*#landing_searchbar*/ #search_field input{
+    /*width: 100%;*/
     height: auto;
     text-align: center;
     font-size: 1.5em;
@@ -131,22 +138,13 @@ td:last-child{
     border-radius: 8px;
 }
 
-#search_field{
-    overflow: hidden;
-    margin-bottom: 1em /*5vh*/;
+#search_field label{
+    display: none;
 }
 
 #advanced_search_field{
     overflow: hidden;
     margin-top: 1em /*5vh*/;
-}
-
-.search_field_active{
-    height: auto;
-}
-
-.search_field_inactive{
-    height: 0;
 }
 
 #advanced_search_field table{
@@ -162,6 +160,16 @@ td:last-child{
     padding: 0.5em;
     font-size: 1em;
 }
+
+
+.search_field_active{
+    height: auto;
+}
+
+.search_field_inactive{
+    height: 0;
+}
+
 
 #advanced_fields_link{
     width: 100%;
