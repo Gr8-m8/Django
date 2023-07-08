@@ -38,16 +38,17 @@ class lan(models.Model):
 
 class mainTable(models.Model): # (provisorsik typer just nu)
     pvn = models.Model(max_length=6) # ska kalkyleras fram baserat på tre fält
-    art = models.CharField(max_length=2) # pvn 1
-    ursprungskalla = models.CharField(max_length=255)
-    lan = models.CharField(max_length=255) # pvn 2
-    insamlingsdatum = models.CharField(max_length=255)
-    diskriminator = models.CharField(max_length=255) # pvn 3
-    insamlingsperson = models.CharField(max_length=255)
-    odlingsmaterial = models.CharField(max_length=255)
-    ursprungsplanta = models.CharField(max_length=255) #
+    art = models.ForeignKey(art, on_delete=models.CASCADE) # pvn 1
+    ursprungskalla = models.ForeignKey(ursprungskalla, on_delete=models.CASCADE)
+    lan = models.ForeignKey(lan, on_delete=models.CASCADE) # pvn 2
+    insamlingsdatum = models.ForeignKey(insamlingsdatum, on_delete=models.CASCADE) # pvn 3
+    diskriminator = models.IntegerField
+    insamlingsperson = models.ForeignKey(insamlingsperson, on_delete=models.CASCADE)
+    odlingsmaterial = models.ForeignKey(odlingsmaterial, on_delete=models.CASCADE)
+    ursprungsplanta = models.CharField(max_length=255) # nyckel till annan plantas pvn
     rotade = models.CharField(max_length=255)
     sticklingar = models.CharField(max_length=255)
     planterad = models.BooleanField
     antal_plockade = models.IntegerField
 
+# pvn = art/län/instans
