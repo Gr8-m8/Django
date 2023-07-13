@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
-from .models import TreeType, mainTable
+from .models import art, mainTable
 from .forms import Search_Form, Search_Form_Advanced
 
 def landing(request):
@@ -18,7 +18,7 @@ def landing(request):
 
 
 def tree_type(request):
-    tree_type_list = TreeType.objects.all().values()
+    tree_type_list = art.objects.all().values()
     template = loader.get_template('tree_type_list.html')
     context = {'tree_type_list': tree_type_list, }
     return HttpResponse(template.render(context, request))
@@ -26,7 +26,7 @@ def tree_type(request):
 
 
 def tree_wiki(request, id):
-  tree_type = TreeType.objects.get(id=id)
+  tree_type = art.objects.get(id=id)
   template = loader.get_template('tree_type_wiki.html')
   context = {
     'tree_type': tree_type,
@@ -40,8 +40,8 @@ def search_result(request):
   if (search.isnumeric()):
     search_list = mainTable.objects.filter(pvn__icontains=search).values()
   else:
-    search_list = TreeType.objects.filter(se__icontains=search).values()
-  
+    search_list = art.objects.filter(se__icontains=search).values()
+
   
   if search_list.count() == 1:
     directlink = "/tree_type_list/"
