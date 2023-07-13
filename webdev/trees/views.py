@@ -37,9 +37,7 @@ def tree_wiki(request, id):
 
 def search_result(request):
   search = request.GET.get('query')
-  tree_type_list = TreeType.objects.filter(se__iexact=search).values()
-  if (tree_type_list.count()==0):
-    tree_type_list = TreeType.objects.filter(se__icontains=search).values()
+  tree_type_list = TreeType.objects.filter(se__icontains=search).values()
   if tree_type_list.count() == 1:
     directlink = "/tree_type_list/"
     directlink += str(tree_type_list.first().get('id'))
