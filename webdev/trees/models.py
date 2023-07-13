@@ -17,7 +17,7 @@ class bilder(Model):
 
 class insamlingsdatum(Model): # återstår att se exakt hur detta ska skötas
     instans = CharField(max_length=4) 
-    datum = DateField
+    datum = DateField()
 
 class insamlingsperson(Model):
     alias_namn = CharField(max_length=255)
