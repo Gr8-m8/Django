@@ -1,7 +1,7 @@
 {% extends "landing.html" %}
 
 {% block search_result %}
-    <h1>Result for '{{ search_item }}'</h1>
+    <h1>Result for '{{ search_query }}'</h1>
     <div>
         <table cellspacing="0" class="margin_auto">
             <thead>
@@ -18,16 +18,16 @@
                 </tr>
             </thead>
             <tbody>
-                {% for tree_type in tree_type_list %}
+                {% for search_item in search_list %}
                     <tr>
                         <td>
-                            {{ tree_type.latin }}
+                            {{ search_item.latin }}
                         </td>
                         <td>
-                            {{ tree_type.se }}
+                            {{ search_item.se }}
                         </td>
                         <td>
-                            <a href="/tree_type_list/{{ tree_type.id }}">Wiki Link</a>
+                            <a href="/tree_type_list/{{ search_item.id }}">Wiki Link</a>
                         </td>
                     </tr>
                 </a>
