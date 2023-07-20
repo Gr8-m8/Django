@@ -1,37 +1,37 @@
 {% extends "main.html" %}
 
 {% block title %}
-    Tree Type List
+    Tree Instance List
 {% endblock %}
 
 {% block content %}
-    <h1>Tree Type List</h1>
+    <h1>Tree Instance List</h1>
     <div>
         <table cellspacing="0" class="margin_auto">
             <thead>
                 <tr>
                     <td>
-                        Swedish
+                        PVN
                     </td>
                     <td>
-                        Latin
+                        #
                     </td>
                     <td>
-                        Information
+                        art
                     </td>
                 </tr>
             </thead>
             <tbody>
-                {% for tree_type in tree_type_list %}
+                {% for tree_instance in tree_instance_list %}
                     <tr>
                         <td>
-                            {{ tree_type.namn }}
+                            {{ tree_instance.pvn }}
                         </td>
                         <td>
-                            {{ tree_type.latin }}
+                            {{ tree_instance.diskriminator }}
                         </td>
                         <td>
-                            <a href="{{ tree_type.id }}">Wiki Link</a>
+                            {{ tree_instance.art.namn }}
                         </td>
                     </tr>
                 </a>

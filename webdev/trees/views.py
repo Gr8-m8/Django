@@ -2,7 +2,9 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
+from django.db.models import Value
 from .models import art, mainTable
+from django.db.models.functions import StrIndex
 from .forms import Search_Form, Search_Form_Advanced
 
 def landing(request):
@@ -19,6 +21,7 @@ def landing(request):
 
 def tree_type(request):
     tree_type_list = art.objects.all().values()
+    #print(tree_type_list)
     template = loader.get_template('tree_type_list.html')
     context = {'tree_type_list': tree_type_list, }
     return HttpResponse(template.render(context, request))
@@ -34,22 +37,28 @@ def tree_wiki(request, id):
   return HttpResponse(template.render(context, request))
 
 
+def tree_instance(request):
+  tree_instance_list = mainTable.objects.all().values()
+  #print(tree_instance_list)
+  template = loader.get_template('tree_instance_list.html')
+  context = {'tree_instance_list': tree_instance_list, }
+  return HttpResponse(template.render(context, request))
+
 
 def search_result(request):
   search = request.GET.get('query')
-  if (search.isnumeric()):
-    search_list = mainTable.objects.filter(pvn__icontains=search).values()
-  else:
-    search_list = art.objects.filter(se__icontains=search).values()
-
+  search_list_tree = mainTable.objects.filter(pvn__icontains=search).values()
+  search_list_info = art.objects.filter(namn__icontains=search).annotate(search_index=StrIndex('namn', Value(search))).order_by('search_index')
+    
   
-  if search_list.count() == 1:
+  if search_list_info.count() == 1 and search_list_tree.count() < 1:
     directlink = "/tree_type_list/"
-    directlink += str(search_list.first().get('id'))
-    return HttpResponseRedirect(directlink)
+    #directlink += str(search_list_info.first().get('id'))
+    #return HttpResponseRedirect(directlink)
   template = loader.get_template('search_result.html')
   context = {
-    'search_list': search_list,
+    'search_list_tree': search_list_tree,
+    'search_list_info': search_list_info,
     'search_query': search,
   }
   return HttpResponse(template.render(context, request))
