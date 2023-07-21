@@ -19,7 +19,7 @@ def landing(request):
 
 
 
-def tree_type(request):
+def tree_type_list(request):
     tree_type_list = art.objects.all().values()
     #print(tree_type_list)
     template = loader.get_template('tree_type_list.html')
@@ -28,20 +28,29 @@ def tree_type(request):
 
 
 
-def tree_wiki(request, id):
+def tree_type(request, id):
   tree_type = art.objects.get(id=id)
-  template = loader.get_template('tree_type_wiki.html')
+  template = loader.get_template('tree_type.html')
   context = {
     'tree_type': tree_type,
   }
   return HttpResponse(template.render(context, request))
 
 
-def tree_instance(request):
+def tree_instance_list(request):
   tree_instance_list = mainTable.objects.all().values()
   #print(tree_instance_list)
   template = loader.get_template('tree_instance_list.html')
   context = {'tree_instance_list': tree_instance_list, }
+  return HttpResponse(template.render(context, request))
+
+
+def tree_instance(request, id):
+  tree_instance = mainTable.objects.get(id=id)
+  template = loader.get_template('tree_instance.html')
+  context = {
+    'tree_instance': tree_instance,
+  }
   return HttpResponse(template.render(context, request))
 
 

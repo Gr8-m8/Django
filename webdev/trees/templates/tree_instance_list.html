@@ -19,6 +19,9 @@
                     <td>
                         art
                     </td>
+                    <td>
+                        Overwiev
+                    </td>
                 </tr>
             </thead>
             <tbody>
@@ -31,7 +34,10 @@
                             {{ tree_instance.diskriminator }}
                         </td>
                         <td>
-                            {{ tree_instance.art.namn }}
+                            {{ tree_instance.art }}
+                        </td>
+                        <td>
+                            <a href="{{ tree_instance.id }}">Overview Link</a>
                         </td>
                     </tr>
                 </a>

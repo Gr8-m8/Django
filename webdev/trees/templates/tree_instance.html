@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+
+{% block title %}
+    Tree Info
+{% endblock %}
+
+{% block content %}
+    <h1>{{ tree_instance.pvn }}#{{ tree_instance.diskriminator }}</h1>
+    <p>{{ tree_instance.art }}</p>
+
+    <a onclick="history.back()">Return</a>
+{% endblock %}
