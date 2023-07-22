@@ -13,6 +13,8 @@
     Fälten är tomma tills att man tryckt på "Redigera befinltigt träd"-knappen.
     Dessa fält används också för att lägga till nytt träd.
 
+    finns knappar som kan dölja "lägga till nytt"-fälten.
+
     Under fälten finns två knappar; "Spara Ändringar" och "Lägg till nytt träd"
 
 -->
@@ -21,12 +23,131 @@
     <input type="submit" value="Hämta">
     <br>
     <!-- Fälten Startar Här -->
-    <input type="text" id="pvn" name="pvn">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.pvn_display.value }}
+    </form><br> <!-- passiv display av pvn då det "kalyleras" fram via databasen -->
+
     
+    <select id="art_drop" name="Art"><!-- hämta från databas --></select><br>
+
+    <input type="button" id="art_button"><br>
+    <!--Dyker upp när man trycker på knappen-->
+    <input type="text" id="art_ny_namn" name="namn"><br><!-- lägg till nytt i databas -->
+    <input type="text" id="art_ny_latin" name="latin"><br><!-- lägg till nytt i databas -->
+    <input type="textarea" id="art_ny_wiki" name="wiki"><br><!-- lägg till nytt i databas -->
+
+    
+    <select id="ur_drop" name="Ursprungskälla"><!-- hämta från databas --></select><br>
+
+    <input type="button" id="ur_button"><br>
+    <!--Dyker upp när man trycker på knappen-->
+    <input type="text" id="ur_ny_plats" name="plats"><br><!-- lägg till nytt i databas -->
+    <input type="text" id="ur_ny_info" name="info"><br><!-- lägg till nytt i databas -->
+    <input type="text" id="ur_ny_koordinater" name="koordinater"><br><!-- lägg till nytt i databas -->
+
+    
+    <!--INSAMLINGSDATUM HÄR: osäker på hur vi skulle göra; kolla upp på mötet -->
+
+    
+    <select id="pers_drop" name="insamlingsperson"><!-- hämta från databas --></select><br>
+
+    <input type="button" id="pers_button"><br>
+    <!--Dyker upp när man trycker på knappen-->
+    <input type="text" id="pers_ny_alias" name="alias"><br><!-- lägg till nytt i databas -->
+    <input type="text" id="pers_ny_kontakt" name="kontakt"><br><!-- lägg till nytt i databas -->
+    <input type="text" id="pers_ny_tele" name="tele"><br><!-- lägg till nytt i databas -->
+    <input type="email" id="pers_ny_email" name="email"><br><!-- lägg till nytt i databas -->
+
+   
+    <select id="odl_drop" name="odlingsmaterial"><!-- hämta från databas --></select><br>
+
+    <input type="button" id="odl_button"><br>
+    <!--Dyker upp när man trycker på knappen-->
+    <input type="text" id="odl_ny" name="nytt odlingsmaterial"><br><!-- lägg till nytt i databas -->
+
+    
+    <select id="urplan_drop" name="Ursprungsplanta"><!-- hämta från databas --></select><br>
+
+    
+    <select id="lan_drop" name="Län"><!-- hämta från databas --></select><br>
+
+    
+    <select id="bool_drop" name="Planterad">
+        <option value="">Planterad?</option>  
+		<option value="Ja">Ja</option>  
+		<option value="Nej">Nej</option> 
+    </select><br>
+
     <!-- Fälten Slutar Här -->
     <br>
     
     <button type="submit" style="display: inline-block; margin-right: 10px;">Spara Ändringar</button>
     <button type="submit" style="display: inline-block;">Lägg till nytt</button>
     <br>
+
+
+    <script>
+        // Art
+        document.getElementById('art_button').addEventListener('click', function() {
+            var namn = document.getElementById('art_ny_namn');
+            var latin = document.getElementById('art_ny_latin');
+            var wiki = document.getElementById('art_ny_wiki');
+            if (namn.style.display === 'none') {
+                namn.style.display = 'block';
+                latin.style.display = 'block';
+                wiki.style.display = 'block';
+            } else {
+                namn.style.display = 'none';
+                latin.style.display = 'none';
+                wiki.style.display = 'none';
+            }
+        });
+
+        //Ursprungskälla
+        document.getElementById('ur_button').addEventListener('click', function() {
+            var plats = document.getElementById('ur_ny_plats');
+            var info = document.getElementById('ur_ny_info');
+            var koordinater = document.getElementById('ur_ny_koordinater');
+            if (plats.style.display === 'none') {
+                plats.style.display = 'block';
+                info.style.display = 'block';
+                koordinater.style.display = 'block';
+            } else {
+                plats.style.display = 'none';
+                info.style.display = 'none';
+                koordinater.style.display = 'none';
+            }
+        });
+
+        //Insamlingsperson
+        document.getElementById('pers_button').addEventListener('click', function() {
+            var alias = document.getElementById('pers_ny_alias');
+            var kontakt = document.getElementById('pers_ny_kontakt');
+            var tele = document.getElementById('pers_ny_tele');
+            var email = document.getElementById('pers_ny_email');
+            if (alias.style.display === 'none') {
+                alias.style.display = 'block';
+                kontakt.style.display = 'block';
+                tele.style.display = 'block';
+                email.style.display = 'block';
+            } else {
+                alias.style.display = 'none';
+                kontakt.style.display = 'none';
+                tele.style.display = 'none';
+                email.style.display = 'none';
+            }
+        });
+
+        //Odlingsmaterial
+        document.getElementById('odl_button').addEventListener('click', function() {
+            var typ = document.getElementById('odl_ny');
+            if (typ.style.display === 'none') {
+                typ.style.display = 'block';
+            } else {
+                typ.style.display = 'none';
+            }
+        });
+    </script>
+    
 {% endblock content %}

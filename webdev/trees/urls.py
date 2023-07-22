@@ -8,4 +8,5 @@ urlpatterns = [
     path('search/', views.search_result, name='search_result'),
     path('tree_instance_list/', views.tree_instance_list, name='tree_instance_list'),
     path('tree_instance_list/<int:id>', views.tree_instance, name='tree_instance'),
+    #path('admin_anders/', views.admin_anders, name='admin_anders'),
 ]

@@ -72,4 +72,8 @@ def search_result(request):
   }
   return HttpResponse(template.render(context, request))
 
+# def admin_anders(request):
+#   template = loader.get_template('admin_anders.html')
+#   return HttpResponse(template.render(request))
+
 
