@@ -3,3 +3,6 @@ instans per län
 ex: län 2 instans 3, län 3 instans 3
 
 skapa en html sida som en simpel databas input för Anders
+
+22/7 
+research Django admin och om vi kan filtrera ner den till bara det nödvändiga.
