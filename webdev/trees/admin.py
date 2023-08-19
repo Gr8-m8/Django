@@ -11,3 +11,8 @@ admin.site.register(odlingsmaterial)
 admin.site.register(lan)
 admin.site.register(landskap)
 admin.site.register(mainTable)
+
+# Kosmetiska ändringar här
+admin.site.site_header = "Databas för Träd - Header"
+admin.site.site_title = "Databas för Träd - Title"
+
