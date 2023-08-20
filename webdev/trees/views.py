@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
 from django.db.models import Value
-from .models import art, mainTable
+from .models import art, planta
 from django.db.models.functions import StrIndex
 from .forms import Search_Form, Search_Form_Advanced
 
@@ -38,7 +38,7 @@ def tree_type(request, id):
 
 
 def tree_instance_list(request):
-  tree_instance_list = mainTable.objects.all().values()
+  tree_instance_list = planta.objects.all().values()
   #print(tree_instance_list)
   template = loader.get_template('tree_instance_list.html')
   context = {'tree_instance_list': tree_instance_list, }
@@ -46,7 +46,7 @@ def tree_instance_list(request):
 
 
 def tree_instance(request, id):
-  tree_instance = mainTable.objects.get(id=id)
+  tree_instance = planta.objects.get(id=id)
   template = loader.get_template('tree_instance.html')
   context = {
     'tree_instance': tree_instance,
@@ -56,7 +56,7 @@ def tree_instance(request, id):
 
 def search_result(request):
   search = request.GET.get('query')
-  search_list_tree = mainTable.objects.filter(pvn__icontains=search).values()
+  search_list_tree = planta.objects.filter(pvn__icontains=search).values()
   search_list_info = art.objects.filter(namn__icontains=search).annotate(search_index=StrIndex('namn', Value(search))).order_by('search_index')
     
   

@@ -1,41 +1,14 @@
 from django.db.models import *
 
-class art(Model):
-    pvn = IntegerField #!!TBR
+#statisk
+class art(Model): 
     namn = CharField(max_length=255)
     latin = CharField(max_length=255)
     info = TextField(blank=True)
 
     def __str__(self):
         return f"{self.namn}"
-
-class bilder(Model):
-    proviensnr = CharField(max_length=6) # att ändra typ senare
-    link = CharField(max_length=500) # kan behöva vara längre
-
-class insamlingsdatum(Model): # återstår att se exakt hur detta ska skötas
-    instans = CharField(max_length=4) 
-    datum = DateField
-
-    def __str__(self):
-        return f"{self.instans}"
-
-class insamlingsperson(Model):
-    alias_namn = CharField(max_length=255)
-    tele = CharField(max_length=255) #!!tel
-    email = EmailField
-
-    def __str__(self):
-        return f"{self.alias_namn}"
-
-class ursprungskalla(Model): # ta reda på exakt vilken information Anders vill ha här
-    plats = CharField(max_length=255)
-    info = CharField(max_length=255)
-    koord = FloatField
-
-    def __str__(self):
-        return f"{self.plats}"
-
+    
 class odlingsmaterial(Model):
     typ = CharField(max_length=255)
 
@@ -43,37 +16,55 @@ class odlingsmaterial(Model):
         return f"{self.typ}"
 
 class lan(Model):
-    pvn = CharField(max_length=2) #!!
-    lan = CharField(max_length=255)
+    namn = CharField(max_length=255)
+    info = CharField(max_length=500)
 
     def __str__(self):
-        return f"{self.lan}"
+        return f"{self.namn}"
     
 class landskap(Model): 
-    pvn = CharField(max_length=2)
-    landskap = CharField(max_length=255)
+    namn = CharField(max_length=255)
+    info = CharField(max_length=500)
 
     def __str__(self):
-        return f"{self.landskap}"
+        return f"{self.namn}"
 
-# class roligtClass(Model):
-#     testing = CharField(max_length=2)
+#dynamisk
+class insamlingsperson(Model): 
+    alias = CharField(max_length=255)
+    tel = CharField(max_length=255, blank=True, null=True)
+    email = EmailField(blank=True, null=True)
 
-class mainTable(Model): # (provisorsik typer just nu)
-    pvn = CharField(max_length=6, default= 0) # ska kalkyleras fram baserat på tre fält
-    art = ForeignKey(art, on_delete=CASCADE) # pvn 1
-    ursprungskalla = ForeignKey(ursprungskalla, on_delete=CASCADE)
-    lan = ForeignKey(lan, on_delete=CASCADE) 
-    landskap = ForeignKey(landskap, on_delete=CASCADE) # pvn 2
-    #roligtMain = IntegerField()
-    insamlingsdatum = ForeignKey(insamlingsdatum, on_delete=CASCADE) # pvn 3 #!!
-    diskriminator = IntegerField()
-    insamlingsperson = ForeignKey(insamlingsperson, on_delete=CASCADE)
+    def __str__(self):
+        return f"{self.alias}"
+
+class ursprungskalla(Model):
+    landskap = ForeignKey(landskap, on_delete=CASCADE)
+    lan = ForeignKey(lan, on_delete=CASCADE, blank=True, null=True)
+    info = CharField(max_length=255)
+    koord_lat = FloatField(default=0)
+    koord_lon = FloatField(default=0)
+
+    def __str__(self):
+        return f"{self.koord_lat,self.koord_lon,self.landskap}"
+
+
+class planta(Model):
+    pvn =  CharField(max_length=6, default=0) #TEMP?
+    art = ForeignKey(art, on_delete=CASCADE) #pnv:1
+    ursprungskalla = ForeignKey(ursprungskalla, on_delete=CASCADE) #!!/pvn:2
+    diskriminator = IntegerField() #!!pvn:3
+    
     odlingsmaterial = ForeignKey(odlingsmaterial, on_delete=CASCADE)
-    ursprungsplanta = CharField(max_length=255) # nyckel till annan plantas pvn
-    rotade = CharField(max_length=255)
-    sticklingar = CharField(max_length=255)
-    planterad = BooleanField
-    antal_plockade = IntegerField
+    ursprungsplanta = ForeignKey("self", on_delete=CASCADE, blank=True, null=True)
 
-# pvn = art/landskap/instans
+    insamlingsperson = ForeignKey(insamlingsperson, on_delete=CASCADE, blank=True, null=True)
+
+    rotade = CharField(max_length=255, blank=True, null=True) #!!TBR?
+    sticklingar = CharField(max_length=255, blank=True, null=True) #!!TBR?
+    planterad = BooleanField(blank=True, null=True)
+    antal_plockade = IntegerField(blank=True, null=True) #!!TBR
+
+class bild(Model):
+    pvnlink = ForeignKey(planta, null=False, on_delete=CASCADE)
+    link = CharField(max_length=500)
