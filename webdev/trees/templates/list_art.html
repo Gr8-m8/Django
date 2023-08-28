@@ -22,16 +22,16 @@
                 </tr>
             </thead>
             <tbody>
-                {% for tree_type in tree_type_list %}
+                {% for art in list_art %}
                     <tr>
                         <td>
-                            {{ tree_type.namn }}
+                            {{ art.namn }}
                         </td>
                         <td>
-                            {{ tree_type.latin }}
+                            {{ art.latin }}
                         </td>
                         <td>
-                            <a href="{{ tree_type.id }}">Wiki Link</a>
+                            <a href="{{ art.id }}">Wiki Link</a>
                         </td>
                     </tr>
                 </a>

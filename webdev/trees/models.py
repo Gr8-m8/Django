@@ -46,7 +46,7 @@ class ursprungskalla(Model):
     koord_lon = FloatField(default=0)
 
     def __str__(self):
-        return f"{self.koord_lat,self.koord_lon,self.landskap}"
+        return f"{self.koord_lat,self.koord_lon,self.landskap.namn}"
 
 
 class planta(Model):

@@ -19,57 +19,58 @@ def landing(request):
 
 
 
-def tree_type_list(request):
-    tree_type_list = art.objects.all().values()
+def list_art(request):
+    list_art = art.objects.all().values()
     #print(tree_type_list)
-    template = loader.get_template('tree_type_list.html')
-    context = {'tree_type_list': tree_type_list, }
+    template = loader.get_template('list_art.html')
+    context = {'list_art': list_art, }
     return HttpResponse(template.render(context, request))
 
 
 
-def tree_type(request, id):
-  tree_type = art.objects.get(id=id)
-  template = loader.get_template('tree_type.html')
+def detail_art(request, id):
+  detail_art = art.objects.get(id=id)
+  template = loader.get_template('detail_art.html')
   context = {
-    'tree_type': tree_type,
+    'detail_art': detail_art,
   }
   return HttpResponse(template.render(context, request))
 
 
-def tree_instance_list(request):
-  tree_instance_list = planta.objects.all().values()
-  #print(tree_instance_list)
-  template = loader.get_template('tree_instance_list.html')
-  context = {'tree_instance_list': tree_instance_list, }
+def list_planta(request):
+  list_planta = planta.objects.all().values()
+  template = loader.get_template('list_planta.html')
+  context = {'list_planta': list_planta, }
   return HttpResponse(template.render(context, request))
 
 
-def tree_instance(request, id):
-  tree_instance = planta.objects.get(id=id)
-  template = loader.get_template('tree_instance.html')
+def detail_planta(request, id):
+  detail_planta = planta.objects.get(id=id)
+  template = loader.get_template('detail_planta.html')
   context = {
-    'tree_instance': tree_instance,
+    'detail_planta': detail_planta,
   }
   return HttpResponse(template.render(context, request))
 
 
 def search_result(request):
   search = request.GET.get('query')
-  search_list_tree = planta.objects.filter(pvn__icontains=search).values()
-  search_list_info = art.objects.filter(namn__icontains=search).annotate(search_index=StrIndex('namn', Value(search))).order_by('search_index')
-    
+  search_list_planta = planta.objects.filter(pvn__icontains=search).values()
+  search_list_art = art.objects.filter(namn__icontains=search).annotate(search_index=StrIndex('namn', Value(search))).order_by('search_index')
   
-  if search_list_info.count() == 1 and search_list_tree.count() < 1:
-    directlink = "/tree_type_list/"
-    #directlink += str(search_list_info.first().get('id'))
-    #return HttpResponseRedirect(directlink)
+  if search_list_art.count() + search_list_planta.count() == 1:
+    directlink = ""
+    if search_list_art.count() > search_list_planta.count():
+      directlink = "/tree_type_list/"
+      directlink += str(search_list_art.first().get("id"))
+    else:
+      directlink = "/tree_type_list/"
+      directlink += str(search_list_planta.first().get("id"))
+    return HttpResponseRedirect(directlink)
   template = loader.get_template('search_result.html')
   context = {
-    'search_list_tree': search_list_tree,
-    'search_list_info': search_list_info,
+    'search_list_tree': search_list_planta,
+    'search_list_info': search_list_art,
     'search_query': search,
   }
   return HttpResponse(template.render(context, request))
-
-

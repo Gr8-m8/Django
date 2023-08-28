@@ -3,7 +3,7 @@
 {% block search_result %}
     <h1>Result for '{{ search_query }}'</h1>
     <div>
-        {% if search_list_tree %}
+        {% if search_list_planta %}
             <table cellspacing="0" class="margin_auto">
                 <thead>
                     <tr>
@@ -11,24 +11,24 @@
                             pvn
                         </td>
                         <td>
-                            #
+                            art
                         </td>
                         <td>
-                            art
+                            info
                         </td>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for search_item in search_list_tree %}
+                    {% for search_item in search_list_planta %}
                         <tr>
                             <td>
                                 {{ search_item.pvn }}
                             </td>
                             <td>
-                                {{ search_item.diskriminator }}
+                                {{ search_item.art }}
                             </td>
                             <td>
-                                {{ search_item.art }}
+                                <a href="/tree_type_list/{{ search_item.id }}">Wiki Link</a>
                             </td>
                         </tr>
                     </a>
@@ -36,7 +36,7 @@
                 </tbody>
             </table>
         {% endif %}
-        {% if search_list_info %}
+        {% if search_list_art %}
             <table cellspacing="0" class="margin_auto">
                 <thead>
                     <tr>
@@ -52,7 +52,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for search_item in search_list_info %}
+                    {% for search_item in search_list_art %}
                         <tr>
                             <td>
                                 {{ search_item.namn }}
