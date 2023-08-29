@@ -1,12 +1,12 @@
-{% extends "main.html" %}
-
-{% block title %}
-    Tree Info
-{% endblock %}
-
-{% block content %}
-    <h1>{{ detail_planta.pvn }}#{{ detail_planta.diskriminator }}</h1>
-    <p>{{ detail_planta.art }}</p>
-
-    <a onclick="history.back()">Return</a>
-{% endblock %}
+<table>
+    <tr>
+        <td><h1>PVN</h1></td>
+        <td><h1>{{ detail_planta.pvn }}</h1></td>
+    </tr>
+    <tr>
+        <td>Art</td><td>{{ detail_planta.art }}</td>
+    </tr>
+    <tr>
+        <td>Ursprungskälla</td><td>{{ detail_planta.ursprungskalla.landskap.namn }}</td>
+    </tr>
+</table>

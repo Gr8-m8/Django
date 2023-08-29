@@ -1,12 +1,10 @@
-{% extends "main.html" %}
-
-{% block title %}
-    Tree Wiki
-{% endblock %}
-
-{% block content %}
-    <h1>{{ detail_art.latin }} {{ detail_art.se }}</h1>
-    <p>{{ detail_art.info }}</p>
-
-    <a onclick="history.back()">Return</a>
-{% endblock %}
+<table>
+    <tr>
+        <td><h1>Namn</h1></td>
+        <td><h1>{{ detail_art.namn }}</h1><p>{{ detail_art.latin }}</p></td>
+    </tr>
+    <tr>
+        <td>Information</td>
+        <td>{{ detail_art.info }}</td>
+    </tr>
+</table>

@@ -1,11 +1,4 @@
-{% extends "main.html" %}
-
-{% block title %}
-    Tree Instance List
-{% endblock %}
-
-{% block content %}
-    <h1>Tree Instance List</h1>
+<h1>List Planta</h1>
     <div>
         <table cellspacing="0" class="margin_auto">
             <thead>
@@ -14,13 +7,13 @@
                         PVN
                     </td>
                     <td>
-                        #
+                        Art
                     </td>
                     <td>
-                        art
+                        Ursprungskälla
                     </td>
                     <td>
-                        Overwiev
+                        Detail
                     </td>
                 </tr>
             </thead>
@@ -31,13 +24,13 @@
                             {{ planta.pvn }}
                         </td>
                         <td>
-                            {{ planta.diskriminator }}
+                            {{ planta.art.namn }}
                         </td>
                         <td>
-                            {{ planta.art }}
+                            {{ planta.ursprungskalla.landskap.namn }}
                         </td>
                         <td>
-                            <a href="{{ planta.id }}">Overview Link</a>
+                            <a href="{% url 'list_planta' %}{{ planta.id }}">Overview Link</a>
                         </td>
                     </tr>
                 </a>
@@ -45,4 +38,3 @@
             </tbody>
         </table>
     </div>
-{% endblock %}

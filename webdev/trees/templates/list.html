@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+
+{% block title %}
+    List
+{% endblock %}
+
+{% block content %}
+    {% if list_planta %}
+        {% include 'list_planta.html' %}
+    {% endif %}
+    {% if list_art %}
+        {% include 'list_art.html' %}
+    {% endif %}
+{% endblock %}
