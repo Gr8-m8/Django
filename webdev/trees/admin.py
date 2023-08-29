@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import art, bild,insamlingsperson,ursprungskalla,odlingsmaterial,lan,landskap,planta
+from .models import art, bild,insamlingsperson,odlingsmaterial,lan,landskap,planta
 
 # Register your models here.
 admin.site.register(art)
@@ -9,6 +9,5 @@ admin.site.register(odlingsmaterial)
 
 admin.site.register(bild)
 admin.site.register(insamlingsperson)
-admin.site.register(ursprungskalla)
 
 admin.site.register(planta)
