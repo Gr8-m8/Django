@@ -3,9 +3,9 @@ from . import views
 
 urlpatterns = [
     path('', views.landing, name='landing'),
-    path('tree_type_list/', views.tree_type_list, name='tree_type_list'),
-    path('tree_type_list/<int:id>', views.tree_type, name='tree_type'),
     path('search/', views.search_result, name='search_result'),
-    path('tree_instance_list/', views.tree_instance_list, name='tree_instance_list'),
-    path('tree_instance_list/<int:id>', views.tree_instance, name='tree_instance'),
+    path('list_art/', views.list_art, name='list_art'),
+    path('list_art/<int:id>', views.detail_art, name='detail_art'),
+    path('list_planta/', views.list_planta, name='list_planta'),
+    path('list_planta/<int:id>', views.detail_planta, name='detail_planta'),
 ]

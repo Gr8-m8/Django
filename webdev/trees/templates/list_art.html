@@ -1,11 +1,4 @@
-{% extends "main.html" %}
-
-{% block title %}
-    Tree Type List
-{% endblock %}
-
-{% block content %}
-    <h1>Tree Type List</h1>
+<h1>List Art</h1>
     <div>
         <table cellspacing="0" class="margin_auto">
             <thead>
@@ -17,21 +10,21 @@
                         Latin
                     </td>
                     <td>
-                        Information
+                        Detail
                     </td>
                 </tr>
             </thead>
             <tbody>
-                {% for tree_type in tree_type_list %}
+                {% for art in list_art %}
                     <tr>
                         <td>
-                            {{ tree_type.namn }}
+                            {{ art.namn }}
                         </td>
                         <td>
-                            {{ tree_type.latin }}
+                            {{ art.latin }}
                         </td>
                         <td>
-                            <a href="{{ tree_type.id }}">Wiki Link</a>
+                            <a href="{% url 'list_art' %}{{ art.id }}">Wiki Link</a>
                         </td>
                     </tr>
                 </a>
@@ -39,4 +32,3 @@
             </tbody>
         </table>
     </div>
-{% endblock %}
