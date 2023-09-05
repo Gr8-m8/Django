@@ -7,72 +7,47 @@
 {% block content %}
     <h1>Search</h1>
     <div class="margin_auto search_field_active" id="search_field">
-        <form action="/search/">
-            {% csrf_token %}
-            <!--{{ searchbar }}-->
-            <input type="search" id="landing_searchbar" name="query" />
+        <form method="get" action="/search/">
+            {{search_form}}
             <input type="submit" hidden />
+        </form>
+    </div>
+
+    <div class="margin_auto search_field_inactive" id="advanced_search_field">
+        <form method="get" action="/search/">
+            {{ search_form_advanced.as_table }}
+            <br>
+            <input type="submit"/>
         </form>
     </div>
 
     <div id="advanced_fields_link" hidden>
         <a onclick="ToggleAdvancedFields()">Advanced</a>
         <script>
-            function ToggleAdvancedFields(){
-                var sh = document.getElementById('search_field');
-                var lsh = document.getElementById('id_search_term');//landing_searchbar
-                var ash = document.getElementById('advanced_search_field');
-                var sfi = "search_field_inactive";
-                var sfa = "search_field_active";
-    
-                if (ash.classList.contains(sfi)){
-                    //sh.classList.remove(sfa);
-                    //sh.classList.add(sfi);
-                    lsh.disabled = true;
-                    ash.classList.remove(sfi);
-                    ash.classList.add(sfa);
+            var search_field = document.getElementById('search_field');
+            var search_field_advanced = document.getElementById('advanced_search_field');
+                
+            var lsh = document.getElementById('id_search_term');//landing_searchbar
+                
+            var tagInactive = "search_field_inactive";
+            var tagActive = "search_field_active";
+            
+            function ElementToggleActive(element){
+                if(element.classList.contains(tagInactive)){
+                    element.classList.remove(tagInactive);
+                    element.classList.add(tagActive);
                 } else {
-                    //sh.classList.remove(sfi);
-                    //sh.classList.add(sfa);
-                    lsh.disabled = false;
-                    ash.classList.remove(sfa);
-                    ash.classList.add(sfi);
+                    element.classList.remove(tagActive);
+                    element.classList.add(tagInactive);
                 }
+            }
+
+            function ToggleAdvancedFields(){
+                ElementToggleActive(search_field);
+                ElementToggleActive(search_field_advanced);
             }
         </script>
     </div>
     
-    
-    <div class="margin_auto search_field_inactive" id="advanced_search_field">
-        <form action="/search/">
-            {% csrf_token %}
-            <table cellspacing="0" >
-                {{ search_form.as_table }}
-                <!--
-                {% with search_fields='Nummer Art Ursprungsplats Datum Person Material Ursprungsplanta' %}
-                {% for search_field in search_fields.split %}
-                <tr>
-                    <td>
-                        {{ search_field }}
-                    </td>
-                    <td>
-                        <input type="search" name="{{ search_field }}">
-                    </td>
-                </tr>
-                {% endfor %}
-                {% endwith %}
-                <tr>
-                    <td>
-                        Submit
-                    </td>
-                    <td>
-                        <input type="submit" placeholder="Submit">
-                    </td>
-                </tr>
-                -->
-            </table>
-        </form>
-    </div>
-
     {% block search_result %}{% endblock %}
 {% endblock %}

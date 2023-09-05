@@ -41,7 +41,7 @@ class insamlingsperson(Model):
 class ursprungskalla(Model):
     landskap = ForeignKey(landskap, on_delete=CASCADE)
     lan = ForeignKey(lan, on_delete=CASCADE, blank=True, null=True)
-    info = CharField(max_length=255)
+    info = CharField(max_length=255) #!!500
     koord_lat = FloatField(default=0)
     koord_lon = FloatField(default=0)
 
@@ -57,8 +57,11 @@ class planta(Model):
     
     odlingsmaterial = ForeignKey(odlingsmaterial, on_delete=CASCADE)
     ursprungsplanta = ForeignKey("self", on_delete=CASCADE, blank=True, null=True)
-
+    
+    #!!insamlingsdatum = DateField()
     insamlingsperson = ForeignKey(insamlingsperson, on_delete=CASCADE, blank=True, null=True)
+
+    #!!info = CharField(max_length=500)
 
     rotade = CharField(max_length=255, blank=True, null=True) #!!TBR?
     sticklingar = CharField(max_length=255, blank=True, null=True) #!!TBR?
