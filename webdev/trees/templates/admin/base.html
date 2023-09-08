@@ -1,0 +1,13 @@
+{% load static %}
+{% extends 'admin/base.html' %}
+
+{% block extrastyle %}{{ block.super }}
+<style>
+:root {
+  --primary: #61ce1e;
+  --secondary: #040404;
+  --link-fg: #815c1d;
+  --link-selected-fg: #d83309;
+}
+</style>
+{% endblock %}
