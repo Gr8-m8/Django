@@ -9,6 +9,9 @@ class art(Model):
     def __str__(self):
         return f"{self.namn}"
     
+    def pvnkey(self):
+        return f"{self.id}"
+    
 class odlingsmaterial(Model):
     typ = CharField(max_length=255)
 
@@ -28,6 +31,9 @@ class landskap(Model):
 
     def __str__(self):
         return f"{self.namn}"
+    
+    def pvnkey(self):
+        return f"{self.id}"
 
 #dynamisk
 class insamlingsperson(Model): 
@@ -60,7 +66,8 @@ class planta(Model):
     #pvnTest = (ForeignKey(art.id, on_delete=CASCADE)) + ForeignKey(landskap.id, on_delete=CASCADE) + f"{Model.diskriminator}"
     #pvnTest = ForeignKey(pvnString, on_delete=CASCADE) + f"{Model.diskriminator}"
     #pvnTest = f"{ForeignKey(art.id, on_delete=CASCADE)}" + f"{ForeignKey(landskap.id, on_delete=CASCADE)}" + f"{Model.diskriminator}"
-    pvnTest_rand = f"{ForeignKey(art, on_delete=CASCADE)}" + f"{ForeignKey(landskap, on_delete=CASCADE)}" #+ f"{Model.diskriminator}"
+    pvnTest_rand = f"{ForeignKey(art.pvnkey, on_delete=CASCADE)}" + f"{ForeignKey(landskap.pvnkey, on_delete=CASCADE)}" #+ f"{Model.diskriminator}"
+    
     pvn =  CharField(max_length=6, default=0) #TEMP?
     art = ForeignKey(art, on_delete=CASCADE) #pnv:1
     ursprungskalla = ForeignKey(ursprungskalla, on_delete=CASCADE) #!!/pvn:2
