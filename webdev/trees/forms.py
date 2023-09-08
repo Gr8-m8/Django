@@ -1,13 +1,16 @@
-from django import forms
+from django.forms import *
+from .models import art, planta
 
-class Search_Form(forms.Form):
-    query = forms.CharField(label="query", max_length=1000)
+class Search_Form(Form):
+    query = CharField(label="Query", max_length=1000)
 
-class Search_Form_Advanced(forms.Form):
-    nummer = forms.IntegerField(label="Nummer")
-    art = forms.CharField(label="Art", max_length=100)
-    ursprungsplats = forms.CharField(label="Usprungsplats", max_length=100)
-    datum = forms.DateField(label="Datum")
-    person = forms.CharField(label="Person", max_length=100)
-    material = forms.CharField(label="Material", max_length=100)
-    ursprungsplanta = forms.IntegerField(label="ursprungsplanta")
+class Search_Form_Advanced(Form):
+    q = None
+    pvn = ChoiceField(choices=planta.objects.all().values_list("pvn", "pvn"))
+    art = ChoiceField(choices=planta.objects.all().values_list("art", "art"))
+    ursprungskalla = ChoiceField(choices=planta.objects.all().values_list("ursprungskalla", "ursprungskalla"))
+    odlingsmaterial = ChoiceField(choices=planta.objects.all().values_list("odlingsmaterial", "odlingsmaterial"))
+    ursprungsplanta = ChoiceField(choices=planta.objects.all().values_list("ursprungsplanta", "ursprungsplanta"))
+    #insamlingsdatum = ChoiceField(choices=planta.objects.all().values_list("insamlingsdatum", "insamlingsdatum"))
+    insamlingsperson = ChoiceField(choices=planta.objects.all().values_list("insamlingsperson", "insamlingsperson"))
+    
