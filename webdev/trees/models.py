@@ -66,9 +66,10 @@ class planta(Model):
     #pvnTest = (ForeignKey(art.id, on_delete=CASCADE)) + ForeignKey(landskap.id, on_delete=CASCADE) + f"{Model.diskriminator}"
     #pvnTest = ForeignKey(pvnString, on_delete=CASCADE) + f"{Model.diskriminator}"
     #pvnTest = f"{ForeignKey(art.id, on_delete=CASCADE)}" + f"{ForeignKey(landskap.id, on_delete=CASCADE)}" + f"{Model.diskriminator}"
-    pvnTest_rand = f"{ForeignKey(art.pvnkey, on_delete=CASCADE)}" + f"{ForeignKey(landskap.pvnkey, on_delete=CASCADE)}" #+ f"{Model.diskriminator}"
+    #pvnTest_rand = f"{ForeignKey(art.pvnkey, on_delete=CASCADE)}" + f"{ForeignKey(landskap.pvnkey, on_delete=CASCADE)}" #+ f"{Model.diskriminator}"
+    #pvnTest2 = 
     
-    pvn =  CharField(max_length=6, default=0) #TEMP?
+    pvn = CharField(max_length=6, default=0) #TEMP?
     art = ForeignKey(art, on_delete=CASCADE) #pnv:1
     ursprungskalla = ForeignKey(ursprungskalla, on_delete=CASCADE) #!!/pvn:2
     diskriminator = IntegerField() #!!pvn:3
@@ -86,6 +87,9 @@ class planta(Model):
     planterad = BooleanField(blank=True, null=True)
     antal_plockade = IntegerField(blank=True, null=True) #!!TBR
 
+    def __str__(self):
+        return f"{self.art.pvnkey}" + f"{self.ursprungskalla.landskap.pvnkey}" #+ f"{self.diskriminator}"
+    
 class bild(Model):
     pvnlink = ForeignKey(planta, null=False, on_delete=CASCADE)
     link = CharField(max_length=500)
