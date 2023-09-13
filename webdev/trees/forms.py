@@ -6,11 +6,11 @@ class Search_Form(Form):
 
 class Search_Form_Advanced(Form):
     q = None
-    pvn = ChoiceField(choices=planta.objects.all().values_list("pvn", "pvn"))
-    art = ChoiceField(choices=planta.objects.all().values_list("art", "art"))
-    ursprungskalla = ChoiceField(choices=planta.objects.all().values_list("ursprungskalla", "ursprungskalla"))
-    odlingsmaterial = ChoiceField(choices=planta.objects.all().values_list("odlingsmaterial", "odlingsmaterial"))
-    ursprungsplanta = ChoiceField(choices=planta.objects.all().values_list("ursprungsplanta", "ursprungsplanta"))
-    #insamlingsdatum = ChoiceField(choices=planta.objects.all().values_list("insamlingsdatum", "insamlingsdatum"))
-    insamlingsperson = ChoiceField(choices=planta.objects.all().values_list("insamlingsperson", "insamlingsperson"))
+    #pvn = ChoiceField(required=False, initial={'0':'0'}, choices=planta.objects.all().values_list("pvn", "pvn"))
+    #art = ChoiceField(required=False, initial={'0':'0'}, choices=planta.objects.all().values_list("art", "art"))
+    #ursprungskalla = ChoiceField(required=False, initial={'0':'0'}, choices=planta.objects.all().values_list("ursprungskalla", "ursprungskalla"))
+    #odlingsmaterial = ChoiceField(required=False, initial={'0':'0'}, choices=planta.objects.all().values_list("odlingsmaterial", "odlingsmaterial"))
+    #ursprungsplanta = ChoiceField(required=False, initial={'0':'0'}, choices=planta.objects.all().values_list("ursprungsplanta", "ursprungsplanta"))
+    #insamlingsdatum = ChoiceField(required=False, initial={'0':'0'}, choices=planta.objects.all().values_list("insamlingsdatum", "insamlingsdatum"))
+    #insamlingsperson = ChoiceField(required=False, initial={'0':'0'}, choices=planta.objects.all().values_list("insamlingsperson", "insamlingsperson"))
     
