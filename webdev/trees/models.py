@@ -51,12 +51,13 @@ class ursprungskalla(Model):
         return f"{self.koord_lat,self.koord_lon,self.landskap.namn}"
 
 class planta(Model):
-    pvn = CharField(default=-1,max_length=6) #TEMP?
+    generate = BooleanField(default=True)
+    pvn = CharField(default=-1,max_length=6, editable=False) #TEMP?
     art = ForeignKey(art, on_delete=CASCADE) #pnv:1
-    ursprungskalla = ForeignKey(ursprungskalla, on_delete=CASCADE) #!!/pvn:2
-
-    diskriminator = IntegerField(default=-1, null=True) #!!pvn:3
+    landskap = ForeignKey(landskap, on_delete=CASCADE,editable=False) #pvn:2
+    diskriminator = IntegerField(default=-1, null=True, editable=False) #!!pvn:3
     
+    ursprungskalla = ForeignKey(ursprungskalla, on_delete=CASCADE)
     odlingsmaterial = ForeignKey(odlingsmaterial, on_delete=CASCADE)
     ursprungsplanta = ForeignKey("self", on_delete=CASCADE, blank=True, null=True)
     
@@ -69,27 +70,31 @@ class planta(Model):
     sticklingar = CharField(max_length=255, blank=True, null=True) #!!TBR?
     planterad = BooleanField(blank=True, null=True)
     antal_plockade = IntegerField(blank=True, null=True) #!!TBR
-
-    def generatepvn(self):
-        art = f"{self.art.id}"
-        ursprungskalla = f"{self.ursprungskalla.landskap.id}"
-        diskriminator = f"{self.diskriminator}"
-        if len(art) < 10: art = "0"+art
-        if len(ursprungskalla) < 10: ursprungskalla = "0"+ursprungskalla
-        if len(diskriminator) < 10: diskriminator = "0"+diskriminator
-        pvn = f"{art}{ursprungskalla}{diskriminator}"
-        return pvn
+    
+    def generatelandskap(self):
+        return self.ursprungskalla.landskap
 
     def generatediskriminator(self):
-        p = planta.objects.filter(art=self.art,ursprungskalla=self.ursprungskalla,diskriminator__gt=-1).last()
+        p = planta.objects.filter(art=self.art,landskap=self.landskap,diskriminator__gt=-1).last()
         index = 0
         if p:
             index = p.diskriminator+1
-        #print(planta.objects.filter(art=self.art,ursprungskalla=self.ursprungskalla), p, p.diskriminator, index)
         return index
+    
+    def generatepvn(self):
+        art = f"{self.art.id}"
+        landskap = f"{self.landskap.id}"
+        diskriminator = f"{self.diskriminator}"
+        if len(art) < 10: art = "0"+art
+        if len(landskap) < 10: landskap = "0"+landskap
+        if len(diskriminator) < 10: diskriminator = "0"+diskriminator
+        pvn = f"{art}{landskap}{diskriminator}"
+        return pvn
 
     def save(self, *args, **kwargs):
-        if self.diskriminator==-1:
+        if self.generate==True:
+            self.generate = False
+            self.landskap = self.generatelandskap()
             super(planta, self).save(*args, **kwargs)
             self.diskriminator = self.generatediskriminator()
             self.pvn = self.generatepvn()
