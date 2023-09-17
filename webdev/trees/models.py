@@ -75,9 +75,9 @@ class planta(Model):
         return self.ursprungskalla.landskap
 
     def generatediskriminator(self):
-        p = planta.objects.filter(art=self.art,landskap=self.landskap,diskriminator__gt=-1).last()
+        p = planta.objects.filter(art=self.art,landskap=self.landskap,generate=False,diskriminator__gt=-1).last()
         index = 0
-        if p:
+        if p != None:
             index = p.diskriminator+1
         return index
     
@@ -93,11 +93,11 @@ class planta(Model):
 
     def save(self, *args, **kwargs):
         if self.generate==True:
-            self.generate = False
             self.landskap = self.generatelandskap()
             super(planta, self).save(*args, **kwargs)
             self.diskriminator = self.generatediskriminator()
             self.pvn = self.generatepvn()
+            self.generate = False
 
         super(planta, self).save(*args, **kwargs)
 
