@@ -21,6 +21,17 @@
         font-size: 24px;
     }
 
+    a{
+        font-weight: 400;
+        color: black;
+        text-decoration: none;
+    }
+
+    a:visited{
+        color: black;
+    }
+
+
     table{
         width: 100%;
     }

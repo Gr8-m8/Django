@@ -16,6 +16,7 @@ h1{
 a{
     font-weight: 600;
     color: #609;
+    text-decoration: none;
 }
 
 a:hover{
@@ -73,9 +74,8 @@ td:last-child{
     display: none;
 }
 
-.sep{
-    margin-left: 1em;
-    display: none;
+.uscr{
+    text-decoration: underline;
 }
 
 @media screen and (min-width: 981px){
