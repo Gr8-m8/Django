@@ -5,15 +5,21 @@
         <link rel="icon" href="{% static 'MinimalTree.ico' %}">
         <title>ekobas - {% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'main.css' %}">
+        <link rel="stylesheet" href="{% static 'content.css' %}">
+        <link rel="stylesheet" href="{% static 'landing.css' %}">
     </head>
     <body>
 
         <div id="header" class="content_box">
             <div id="header_content" class="content">
-                <a class="header_content_link" href="/"><img src="{% static 'MinimalTree.ico' %}" id="header_content_icon"></img></a>
-                <a class="header_content_link" href="/">Home</a>
-                <a class="header_content_link" href="{% url 'list_art' %}" >List Art</a>
-                <a class="header_content_link" href="{% url 'list_planta' %}" >List Planta</a>
+                <table class="header_content_link_menu" cellspacing="0" class="margin_auto">
+                    <tr>
+                        <td><a class="header_content_link" href="/"><img src="{% static 'MinimalTree.ico' %}" id="header_content_icon"></img></a></td>
+                        <td><a class="header_content_link" href="/">Home</a></td>
+                        <td><a class="header_content_link" href="{% url 'list_art' %}" >List Art</a></td>
+                        <td><a class="header_content_link" href="{% url 'list_planta' %}" >List Planta</a></td>
+                    </tr>
+                </table>
             </div>
         </div>
 

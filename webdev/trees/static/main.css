@@ -1,16 +1,18 @@
-/* --- GENERAL ELEMENTS --- */
-
+/*General*/
 body{
-    background-color: #0f0;
-    font-size: 3vh /*18px*/;
+    background-color: #999999;
     overflow: hidden;
     overflow-y: scroll;
+    font-size: 48px;
 }
 
+/*Title*/
 h1{
     text-align: center;
+    margin: auto;
 }
 
+/*link*/
 a{
     font-weight: 600;
     color: #609;
@@ -28,31 +30,32 @@ a:visited:hover{
     color: #609;
 }
 
+/*Table*/
 table{
     background-color: #000;
 }
 
 thead tr{
-    background-color: #aa0 !important;
+    background-color: #e6e6e6 !important;
 }
 
 thead td{
     padding: 0.5em 2em;
     font-weight: bold;
-    border-right: /*0.5vw*/ 0.1em solid #660;
+    border-right: /*0.5vw*/ 0.1em solid #cccccc;
 }
 
 tr{
-    background-color: #330;
+    background-color: #b3b3b3;
 }
 
 
 tr:nth-child(even){
-    background-color: #660;
+    background-color: #cccccc;
 }
 
 td{
-    border-right: /*0.5vw*/ 0.1em solid #aa0;
+    border-right: /*0.5vw*/ 0.1em solid #e6e6e6;
     padding: 0.25em 2em;
 }
 
@@ -60,119 +63,14 @@ td:last-child{
     border-right: none;
 }
 
-/* --- GENERAL CLASS --- */
+
+/*margin_auto class*/
 .margin_auto{
     margin: auto;
 }
 
-/* --- MAIN --- */
-/*CONTENT BOX: SHELLS FOR CONTENT DIV*/
-.content_box{
-    background-color: #050;
-    color: #0f0;
-    width: 99%;
-    min-height: 5em /*10vh*/;
-    margin: auto;
-}
-
-#header{
-    margin-bottom: 1em /*3vh*/;
-}
-
-#footer{
-    margin-top: 1em /*3vh*/;
-}
-
-#center{
-    min-height:90vh;
-    /*min-width: 66vmax;*/
-    /*width: 66vmax;*/
-    /*min-width: 408px; /*470px;*/
-    
-    max-width: fit-content;
-}
-
-/* CONTENT:  */
-
-.content{
-    padding: 1em 1em/*5vh 1vw*/;
-    overflow: hidden;
-}
-
-#center_content{
-    padding: 1em 2em/*5vh 1vw*/;
-}
-
-#center_content div{
-    overflow: scroll;
-}
-
-#header_content{
-    height: calc(5em - 2em)
-}
-
-.header_content_link{
-    margin: 0.5em;
-}
-
-#header_content_icon{
-    height: 100%;
-    width: auto;
-    margin-left: -0.75em;
-}
-
-/* --- LANDING --- */
-/* LANDING SEARCHBAR*/
-#search_field{
-    overflow: hidden;
-    margin-bottom: 1em /*5vh*/;
-}
-
-/*#landing_searchbar*/ #search_field input{
-    /*width: 100%;*/
-    height: auto;
-    text-align: center;
-    font-size: 1.5em;
-    padding: 0.5em;
-    font-weight: 700;
-    border-radius: 8px;
-}
-
-#search_field label{
-    display: none;
-}
-
-#advanced_search_field{
-    overflow: hidden;
-    margin-top: 1em /*5vh*/;
-}
-
-#advanced_search_field table{
-    width: 100%;
-}
-#advanced_search_field td{
-    padding: 0.25em 0.5em;
-}
-
-#advanced_search_field input{
-    width: 100%;
-    text-align: center;
-    padding: 0.5em;
-    font-size: 1em;
-}
-
-
-.search_field_active{
-    height: auto;
-}
-
-.search_field_inactive{
-    height: 0;
-}
-
-
-#advanced_fields_link{
-    width: 100%;
-    text-align: right;
-    user-select: none; 
+@media screen and (max-width: 900px){
+    body{
+        font-size: 24px;
+    }
 }
