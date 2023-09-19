@@ -42,6 +42,10 @@
     margin: 0.5em;
 }
 
+.header_content_link img{
+    image-rendering: pixelated;
+}
+
 .header_content_link_menu{
     width: 100%;
     border: none;

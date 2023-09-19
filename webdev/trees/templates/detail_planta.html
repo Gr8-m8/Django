@@ -1,12 +1,42 @@
 <table cellspacing="0" class="margin_auto">
     <tr>
-        <td><h1>PVN</h1></td>
-        <td><h1>{{ detail_planta.pvn }}</h1></td>
+        <td>PVN</td>
+        <td>{{ detail_planta.pvn }}</td>
     </tr>
     <tr>
         <td>Art</td><td>{{ detail_planta.art }}</td>
     </tr>
     <tr>
         <td>Ursprungskälla</td><td>{{ detail_planta.ursprungskalla.landskap.namn }}</td>
+    </tr>
+    <tr>
+        <td>Odlingsmaterial</td><td>{{ detail_planta.odlingsmaterial }}</td>
+    </tr>
+    <tr>
+        <td>Ursprungsplanta</td><td>{{ detail_planta.ursprungsplanta }}</td>
+    </tr>
+    <tr>
+        <td>Insamlingsdatum</td><td>{{ detail_planta.insamlingsdatum|date:"Y-m-d" }}</td>
+    </tr>
+    <tr>
+        <td>Insamlingsperson</td><td>{{ detail_planta.insamlingsperson }}</td>
+    </tr>
+    <tr>
+        <td>Info</td><td>{{ detail_planta.info }}</td>
+    </tr>
+    <tr>
+        <td>Karta</td>
+        <td><a target="_blank" href="https://www.google.com/maps/@?api=1&map_action=map&center={{detail_planta.ursprungskalla.koord_lat}}%2C{{detail_planta.ursprungskalla.koord_lon}}&zoom=12&basemap=terrain">Google maps ({{detail_planta.ursprungskalla.koord_lat}}, {{detail_planta.ursprungskalla.koord_lon}})</a></td>
+    </tr>
+    <tr>
+        <td>Bilder</td>
+        <td>
+            {% if detail_planta_bild %}
+                {% for bild in detail_planta_bild %}
+                    <img class="detail_bild" src="{{bild.link}}"></img>
+                    <br>
+                {% endfor %}
+            {% endif %}
+        </td>
     </tr>
 </table>

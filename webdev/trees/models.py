@@ -108,3 +108,6 @@ class planta(Model):
 class bild(Model):
     pvnlink = ForeignKey(planta, null=False, on_delete=CASCADE)
     link = CharField(max_length=500)
+
+    def __str__(self):
+        return f"{self.id}:{self.pvnlink.pvn}"

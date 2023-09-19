@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
 from django.db.models import Value
-from .models import art, planta
+from .models import art, planta, bild
 from django.db.models.functions import StrIndex
 from .forms import Search_Form, Search_Form_Advanced
 
@@ -62,8 +62,10 @@ def detail_art(request, id):
 
 def detail_planta(request, id):
   detail_planta = planta.objects.get(id=id)
+  detail_planta_bild = bild.objects.filter(pvnlink=detail_planta)
+  print(detail_planta.pvn, detail_planta_bild)
   
-  return view(request, 'detail.html', {'detail_planta': detail_planta,})
+  return view(request, 'detail.html', {'detail_planta': detail_planta, 'detail_planta_bild':detail_planta_bild})
 
 #
 def search_result(request):
