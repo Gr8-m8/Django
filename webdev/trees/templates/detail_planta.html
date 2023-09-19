@@ -26,9 +26,9 @@
     </tr>
     <tr>
         <td>Karta</td>
-        <td><a target="_blank" href="https://www.google.com/maps/@?api=1&map_action=map&center={{detail_planta.ursprungskalla.koord_lat}}%2C{{detail_planta.ursprungskalla.koord_lon}}&zoom=12&basemap=terrain">Google maps ({{detail_planta.ursprungskalla.koord_lat}}, {{detail_planta.ursprungskalla.koord_lon}})</a></td>
+        <td><a target="_blank" href="https://www.google.com/maps/@?api=1&map_action=map&center={{detail_planta.ursprungskalla.koord_lat}}%2C{{detail_planta.ursprungskalla.koord_lon}}&zoom=12&basemap=terrain"><span class="printHide">&#128279; Google maps </span>(lat:{{detail_planta.ursprungskalla.koord_lat}}, lon:{{detail_planta.ursprungskalla.koord_lon}})</a></td>
     </tr>
-    <tr>
+    <tr class="printHide">
         <td>Bilder</td>
         <td>
             {% if detail_planta_bild %}

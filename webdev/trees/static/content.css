@@ -59,6 +59,7 @@
 .header_content_link_menu td{
     border:inherit;
     padding: 0;
+    text-align: center;
 }
 
 .header_content_link_menu tr:nth-child(0) {

@@ -55,8 +55,8 @@ tr:nth-child(even){
 }
 
 td{
-    border-right: /*0.5vw*/ 0.1em solid #e6e6e6;
-    padding: 0.25em 2em;
+    border-right: 0.1em solid #e6e6e6;
+    padding: 0.25em 0.25em;
 }
 
 td:last-child{
@@ -69,8 +69,21 @@ td:last-child{
     margin: auto;
 }
 
+.hide{
+    display: none;
+}
+
+.sep{
+    margin-left: 1em;
+    display: none;
+}
+
 @media screen and (min-width: 981px){
     body{
         font-size: 24px;
+    }
+
+    td{
+        padding: 0.25em 2em;
     }
 }
