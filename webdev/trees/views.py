@@ -69,7 +69,6 @@ def detail_planta(request, id):
 
 #
 def search_result(request):
-  #return HttpResponseRedirect(directlink)
   search = request.GET.get('query')
   if (search==None):
     return search_result_advanced(request)
@@ -79,6 +78,25 @@ def search_result(request):
   
   list_planta_obj = list_planta_objects(search)
   list_art_obj = list_art_objects(search)
+
+  if list_planta_obj.count() == 1 and list_art_obj.count() < 1:
+    planta_obj = None
+    try:
+      planta_obj = planta.objects.get(pvn__iexact=search)
+      if planta_obj:
+        return HttpResponseRedirect(f"/list_planta/{planta_obj.id}")
+    except:
+      planta_obj = None
+
+
+  if list_art_obj.count() == 1 and list_planta_obj.count() < 1:
+    art_obj = None
+    try:
+      art_obj = art.objects.get(pvn__iexact=search)
+      if art_obj:
+        return HttpResponseRedirect(f"/list_art/{art_obj.id}")
+    except:
+      art_obj = None
   
   return view(request, 'search_result.html', 
   {
