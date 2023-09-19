@@ -57,15 +57,19 @@
     padding: 0;
 }
 
+.header_content_link_menu tr:nth-child(0) {
+    width: 6em;
+}
+
 #header_content_icon{
-    height: 4em/*100%*/;
+    height: 5em;
     width: auto;
     margin-left: -0.5em;
     /*margin-top: 0.5em;*/
     border-radius: 12px;
 }
 
-@media screen and (max-width: 900px){
+@media screen and (min-width: 981px){
     .content_box{
         width: 33em;
     }

@@ -42,7 +42,7 @@ thead tr{
 thead td{
     padding: 0.5em 2em;
     font-weight: bold;
-    border-right: /*0.5vw*/ 0.1em solid #cccccc;
+    border-right: 0.1em solid #cccccc;
 }
 
 tr{
@@ -69,7 +69,7 @@ td:last-child{
     margin: auto;
 }
 
-@media screen and (max-width: 900px){
+@media screen and (min-width: 981px){
     body{
         font-size: 24px;
     }
