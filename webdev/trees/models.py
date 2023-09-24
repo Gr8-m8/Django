@@ -111,10 +111,10 @@ class bild(Model):
     namn = CharField(null=True, editable=False, max_length=255)
 
     def save(self, *args, **kwargs):
+        super(bild, self).save(*args, **kwargs)
         path_parts = self.img.name.split("/")
         self.namn = path_parts[len(path_parts)-1]
-
         super(bild, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.pvnlink.pvn}{self.img.name}"
+        return f"{self.pvnlink.pvn}:{self.namn}"
