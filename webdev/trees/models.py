@@ -107,7 +107,14 @@ class planta(Model):
     
 class bild(Model):
     pvnlink = ForeignKey(planta, null=False, on_delete=CASCADE)
-    img = ImageField()
+    img = ImageField(upload_to ='webdev/trees/static/img_trees')
+    namn = CharField(null=True, editable=False, max_length=255)
+
+    def save(self, *args, **kwargs):
+        path_parts = self.img.name.split("/")
+        self.namn = path_parts[len(path_parts)-1]
+
+        super(bild, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.id}:{self.pvnlink.pvn}"
+        return f"{self.pvnlink.pvn}{self.img.name}"
