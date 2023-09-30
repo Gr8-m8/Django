@@ -1,5 +1,0 @@
-instans per län
-
-ex: län 2 instans 3, län 3 instans 3
-
-skapa en html sida som en simpel databas input för Anders
