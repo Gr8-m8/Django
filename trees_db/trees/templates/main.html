@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="{% static 'ico/MinimalTree.ico' %}">
+        <title>svenskaträd - {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/content.css' %}">
+        <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+        <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    </head>
+    <body>
+
+        <div id="header" class="content_box printHide">
+            <div id="header_content" class="content">
+                <table class="header_content_link_menu" cellspacing="0" class="margin_auto">
+                    <tr>
+                        <td><a class="header_content_link" href="/"><img src="{% static 'ico/MinimalTree.ico' %}" id="header_content_icon"></img></a></td>
+                        <td><a class="header_content_link" href="/">&#127969; <span class="uscr">Home</span></a></td>
+                        <td><a class="header_content_link" href="{% url 'list_art' %}" >&#128463; <span class="uscr">List_Art</span></a></td>
+                        <td><a class="header_content_link" href="{% url 'list_planta' %}" >&#128463; <span class="uscr">List_Planta</span></a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="center" class="content_box">
+            <div id="center_content" class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+
+        <div id="footer" class="content_box printHide">
+            <div id="footer_content" class="content">
+                &#127966;
+            </div>
+        </div>
+
+    </body>
+</html>

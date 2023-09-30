@@ -1,0 +1,55 @@
+{% load static %}
+<table cellspacing="0" class="margin_auto">
+    <tr>
+        <td>PVN</td>
+        <td>{{ detail_planta.pvn }}</td>
+    </tr>
+    <tr>
+        <td>Art</td><td>{{ detail_planta.art }}</td>
+    </tr>
+    <tr>
+        <td>Ursprungskälla</td><td>{{ detail_planta.ursprungskalla.landskap.namn }}</td>
+    </tr>
+    <tr>
+        <td>Odlingsmaterial</td><td>{{ detail_planta.odlingsmaterial }}</td>
+    </tr>
+    <tr>
+        <td>Ursprungsplanta</td><td>{{ detail_planta.ursprungsplanta }}</td>
+    </tr>
+    <tr>
+        <td>Insamlingsdatum</td><td>{{ detail_planta.insamlingsdatum|date:"Y-m-d" }}</td>
+    </tr>
+    <tr>
+        <td>Insamlingsperson</td><td>{{ detail_planta.insamlingsperson }}</td>
+    </tr>
+    <tr>
+        <td>Info</td><td>{{ detail_planta.info }}</td>
+    </tr>
+    <tr>
+        <td>Karta</td>
+        <td><a target="_blank" href="https://www.google.com/maps/@?api=1&map_action=map&center={{detail_planta.ursprungskalla.koord_lat}}%2C{{detail_planta.ursprungskalla.koord_lon}}&zoom=12&basemap=terrain"><span class="printHide">&#128279; <span class="uscr">Google maps </span></span><span class="uscr">({{detail_planta.ursprungskalla.koord_lat}}, {{detail_planta.ursprungskalla.koord_lon}})</span></a></td>
+    </tr>
+    <tr class="printHide">
+        <td>Bilder</td>
+        <td>
+            {% if detail_planta_bild %}
+                {% for bild in detail_planta_bild %}
+                    <img class="detail_bild" src="{% static 'img_trees/' %}{{bild.namn}}"></img>
+                    <br>
+                {% endfor %}
+            {% endif %}
+        </td>
+    </tr>
+</table>
+<table cellspacing="0" class="margin_auto">
+    <tr>
+        <td>Art Namn</td><td>{{ detail_planta.art.namn }}</td>
+    </tr>
+    <tr>
+        <td>Art Latin</td><td>{{ detail_planta.art.latin }}</td>
+    </tr>
+    <tr>
+        <td>Art Information</td>
+        <td>{{ detail_planta.art.info }}</td>
+    </tr>
+</table>

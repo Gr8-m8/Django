@@ -1,0 +1,13 @@
+{% extends "landing.html" %}
+
+{% block search_result %}
+    <h1>Result for '{{ search_query }}'</h1>
+    <div>
+        {% if list_planta %}
+            {% include 'list_planta.html' %}
+        {% endif %}
+        {% if list_art %}
+            {% include 'list_art.html' %}
+        {% endif %}
+    </div>
+{% endblock %}
