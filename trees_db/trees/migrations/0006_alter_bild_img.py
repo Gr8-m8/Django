@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='bild',
             name='img',
-            field=models.ImageField(upload_to='trees_db/trees/static/img_trees'),
+            field=models.ImageField(upload_to='treesdb/trees/static/img_trees'),
         ),
     ]

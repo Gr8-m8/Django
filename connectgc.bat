@@ -1,0 +1,1 @@
+ssh -i ~/.ssh/id_rsa.gamechanger.ml deploy@www.gamechanger.eco

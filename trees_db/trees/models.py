@@ -1,6 +1,4 @@
-from typing import Any, Iterable, Optional
 from django.db.models import *
-from django.db.models.signals import post_init
 
 #statisk
 class art(Model): 
@@ -107,7 +105,7 @@ class planta(Model):
     
 class bild(Model):
     pvnlink = ForeignKey(planta, null=False, on_delete=CASCADE)
-    img = ImageField(upload_to ='trees_db/trees/static/img_trees')
+    img = ImageField(upload_to ='treesdb/trees/static/img_trees')
     namn = CharField(null=True, editable=False, max_length=255)
 
     def save(self, *args, **kwargs):
