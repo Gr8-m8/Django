@@ -1,0 +1,49 @@
+.return_link{
+    margin: 1em 1em 1em 1em;
+}
+
+#center table{
+    margin-top: 1em;
+    margin-bottom: 2em;
+    width: 100%;
+}
+
+.detail_bild{
+    width: 100%;
+}
+
+@media print {
+    .printHide{
+        display: none;
+    }
+
+    body{
+        font-size: 24px;
+    }
+
+    a{
+        font-weight: 400;
+        color: black;
+        text-decoration: none;
+    }
+
+    a:visited{
+        color: black;
+    }
+
+
+    table{
+        width: 100%;
+    }
+
+    tr{
+        border-bottom: 1px dashed black;
+    }
+
+    td{
+        border: none;
+        border-bottom: 1px dashed black;
+        width: 50%;
+        
+    }
+}
