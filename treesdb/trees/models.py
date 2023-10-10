@@ -105,7 +105,8 @@ class planta(Model):
     
 class bild(Model):
     pvnlink = ForeignKey(planta, null=False, on_delete=CASCADE)
-    img = ImageField(upload_to ='treesdb/static_trees/img_trees')
+    artlink = ForeignKey(art, null=True, on_delete=CASCADE)
+    img = ImageField(upload_to ='trees/static/img_trees') #'static_trees/img_trees'
     namn = CharField(null=True, editable=False, max_length=255)
 
     def save(self, *args, **kwargs):
