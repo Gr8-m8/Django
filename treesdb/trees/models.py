@@ -1,4 +1,11 @@
 from django.db.models import *
+from django.templatetags.static import static
+
+import environ, os
+env = environ.Env(DEBUG=(bool, False))
+PRJ_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+environ.Env.read_env(os.path.join(PRJ_DIR, '.env'))
+STATIC_PATH = os.path.realpath(env('STATIC_PATH'))
 
 #statisk
 class art(Model): 
@@ -105,8 +112,8 @@ class planta(Model):
     
 class bild(Model):
     pvnlink = ForeignKey(planta, null=False, on_delete=CASCADE)
-    artlink = ForeignKey(art, null=True, on_delete=CASCADE)
-    img = ImageField(upload_to ='trees/static/img_trees') #'static_trees/img_trees'
+    artlink = ForeignKey(art, blank=True, null=True, on_delete=CASCADE)
+    img = ImageField(upload_to = STATIC_PATH) #'static_trees/img_trees'#'trees/static/img_trees'
     namn = CharField(null=True, editable=False, max_length=255)
 
     def save(self, *args, **kwargs):

@@ -5,6 +5,17 @@
     <tr>
         <td>Latin</td><td>{{ detail_art.latin }}</td>
     </tr>
+    <tr class="printHide">
+        <td>Bilder</td>
+        <td>
+            {% if detail_art_bild %}
+                {% for bild in detail_art_bild %}
+                <img class="detail_bild" src="{{bild.namn}}"></img>
+                <br>
+                {% endfor %}
+            {% endif %}
+        </td>
+    </tr>
     <tr>
         <td>Information</td>
         <td>{{ detail_art.info }}</td>

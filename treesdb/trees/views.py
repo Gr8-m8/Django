@@ -7,6 +7,12 @@ from .models import art, planta, bild
 from django.db.models.functions import StrIndex
 from .forms import Search_Form, Search_Form_Advanced
 
+import environ, os
+env = environ.Env(DEBUG=(bool, False))
+PRJ_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+environ.Env.read_env(os.path.join(PRJ_DIR, '.env'))
+STATIC_PATH = os.path.realpath(env('STATIC_PATH'))
+
 def view(request, template_, context_):
   template = loader.get_template(template_)
   context=context_
@@ -15,6 +21,7 @@ def view(request, template_, context_):
 def landing(request):
   search_form=Search_Form()
   search_form_advanced=Search_Form_Advanced()
+  print("STATIC",STATIC_PATH)
 
   return view(request, 'landing.html', 
   {
@@ -56,16 +63,22 @@ def list_planta(request):
 
 
 def detail_art(request, id):
+  print(f"id:{id}")
   detail_art = art.objects.get(id=id)
+  print(f"DA:{detail_art}")
+  detail_art_bild = bild.objects.filter(artlink=detail_art)
+  print(f"DAB:{detail_art_bild}")
 
-  return view(request, 'detail.html', {'detail_art': detail_art,})
+  return view(request, 'detail.html', {'detail_art': detail_art,'detail_art_bild':detail_art_bild})
 
 def detail_planta(request, id):
   detail_planta = planta.objects.get(id=id)
   detail_planta_bild = bild.objects.filter(pvnlink=detail_planta)
-  print(detail_planta.pvn, detail_planta_bild)
+
+  detail_art = detail_planta.art
+  detail_art_bild = bild.objects.filter(artlink=detail_art)
   
-  return view(request, 'detail.html', {'detail_planta': detail_planta, 'detail_planta_bild':detail_planta_bild})
+  return view(request, 'detail.html', {'detail_planta': detail_planta, 'detail_planta_bild':detail_planta_bild, 'detail_art':detail_art})
 
 #
 def search_result(request):

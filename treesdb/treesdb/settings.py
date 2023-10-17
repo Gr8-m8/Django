@@ -11,16 +11,27 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PRJ_DIR = os.path.dirname(BASE_DIR)
+#BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env.read_env(os.path.join(PRJ_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v^n7b!g&hbffya1-s@el&ck_=79t-mu6)2t@ndhpb1kgastn36'
+#SECRET_KEY = 'django-insecure-v^n7b!g&hbffya1-s@el&ck_=79t-mu6)2t@ndhpb1kgastn36'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -74,11 +85,13 @@ WSGI_APPLICATION = 'treesdb.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+db_name = f"{BASE_DIR}/db.sqlite3"
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': db_name,
     }
 }
 
@@ -116,8 +129,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+stcr = f"{PRJ_DIR}/static"
 
-STATIC_ROOT = BASE_DIR / 'static_trees'
+#STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = stcr
 
 STATIC_URL = 'static/'
 
