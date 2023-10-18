@@ -1,5 +1,5 @@
-#.env
+.env
 
-#*.bat
+*.bat
 
-#t_env/**
+t_env/**
