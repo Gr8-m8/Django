@@ -1,11 +1,14 @@
 from django.db.models import *
-from django.templatetags.static import static
+from django.core.files.storage import FileSystemStorage
 
 import environ, os
 env = environ.Env(DEBUG=(bool, False))
-PRJ_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PRJ_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 environ.Env.read_env(os.path.join(PRJ_DIR, '.env'))
-STATIC_PATH = os.path.realpath(env('STATIC_PATH'))
+STATIC_PATH = env('STATIC_PATH')
+
+pth=f"{env('MEDIA_PATH')}/img_trees/"
+IMG_TREES=FileSystemStorage(location=pth)
 
 #statisk
 class art(Model): 
@@ -113,7 +116,7 @@ class planta(Model):
 class bild(Model):
     pvnlink = ForeignKey(planta, null=False, on_delete=CASCADE)
     artlink = ForeignKey(art, blank=True, null=True, on_delete=CASCADE)
-    img = ImageField(upload_to = STATIC_PATH) #'static_trees/img_trees'#'trees/static/img_trees'
+    img = ImageField(storage=IMG_TREES) #'static_trees/img_trees'#'trees/static/img_trees'
     namn = CharField(null=True, editable=False, max_length=255)
 
     def save(self, *args, **kwargs):

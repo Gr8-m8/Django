@@ -1,3 +1,4 @@
+{% load static %}
 <table cellspacing="0" class="margin_auto">
     <tr>
         <td>Namn</td><td>{{ detail_art.namn }}</td>
@@ -10,7 +11,7 @@
         <td>
             {% if detail_art_bild %}
                 {% for bild in detail_art_bild %}
-                <img class="detail_bild" src="{{bild.namn}}"></img>
+                <img class="detail_bild" src="/media/img_trees/{{bild.namn}}"></img>
                 <br>
                 {% endfor %}
             {% endif %}

@@ -34,7 +34,7 @@
         <td>
             {% if detail_planta_bild %}
                 {% for bild in detail_planta_bild %}
-                    <img class="detail_bild" src="{% static 'img_trees/' %}{{bild.namn}}"></img>
+                    <img class="detail_bild" src="/media/img_trees/{{bild.namn}}"></img>
                     <br>
                 {% endfor %}
             {% endif %}
@@ -44,14 +44,25 @@
 <!--
 <table cellspacing="0" class="margin_auto">
     <tr>
-        <td>Art Namn</td><td>{{ detail_planta.art.namn }}</td>
+        <td>Namn</td><td>{{ detail_art.namn }}</td>
     </tr>
     <tr>
-        <td>Art Latin</td><td>{{ detail_planta.art.latin }}</td>
+        <td>Latin</td><td>{{ detail_art.latin }}</td>
+    </tr>
+    <tr class="printHide">
+        <td>Bilder</td>
+        <td>
+            {% if detail_art_bild %}
+                {% for bild in detail_art_bild %}
+                <img class="detail_bild" src="{% static 'img_trees/' %}{{bild.namn}}"></img>
+                <br>
+                {% endfor %}
+            {% endif %}
+        </td>
     </tr>
     <tr>
-        <td>Art Information</td>
-        <td>{{ detail_planta.art.info }}</td>
+        <td>Information</td>
+        <td>{{ detail_art.info }}</td>
     </tr>
 </table>
 -->

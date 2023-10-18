@@ -3,15 +3,18 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
 from django.db.models import Value
+from django.conf import settings
+from django.conf.urls.static import static
 from .models import art, planta, bild
 from django.db.models.functions import StrIndex
 from .forms import Search_Form, Search_Form_Advanced
 
+
 import environ, os
 env = environ.Env(DEBUG=(bool, False))
-PRJ_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PRJ_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 environ.Env.read_env(os.path.join(PRJ_DIR, '.env'))
-STATIC_PATH = os.path.realpath(env('STATIC_PATH'))
+STATIC_PATH = env('STATIC_PATH')
 
 def view(request, template_, context_):
   template = loader.get_template(template_)
@@ -21,7 +24,6 @@ def view(request, template_, context_):
 def landing(request):
   search_form=Search_Form()
   search_form_advanced=Search_Form_Advanced()
-  print("STATIC",STATIC_PATH)
 
   return view(request, 'landing.html', 
   {
@@ -78,7 +80,7 @@ def detail_planta(request, id):
   detail_art = detail_planta.art
   detail_art_bild = bild.objects.filter(artlink=detail_art)
   
-  return view(request, 'detail.html', {'detail_planta': detail_planta, 'detail_planta_bild':detail_planta_bild, 'detail_art':detail_art})
+  return view(request, 'detail.html', {'detail_planta': detail_planta, 'detail_planta_bild':detail_planta_bild, 'detail_art':detail_art, 'detail_art_bild':detail_art_bild})
 
 #
 def search_result(request):

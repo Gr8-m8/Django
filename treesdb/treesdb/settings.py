@@ -11,18 +11,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import environ
-import os
+import environ, os
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
+env = environ.Env(DEBUG=(bool, False))# set casting, default value
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) #Path(__file__).resolve().parent.parent
 PRJ_DIR = os.path.dirname(BASE_DIR)
-#BASE_DIR = Path(__file__).resolve().parent.parent
 
 environ.Env.read_env(os.path.join(PRJ_DIR, '.env'))
 
@@ -34,7 +29,7 @@ environ.Env.read_env(os.path.join(PRJ_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -129,12 +124,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-stcr = f"{PRJ_DIR}/static"
 
-#STATIC_ROOT = BASE_DIR / 'static'
-STATIC_ROOT = stcr
+STATIC_ROOT = env('STATIC_PATH')
+STATIC_URL = '/static/'
 
-STATIC_URL = 'static/'
+MEDIA_ROOT = env('MEDIA_PATH')
+MEDIA_URL = '/media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
