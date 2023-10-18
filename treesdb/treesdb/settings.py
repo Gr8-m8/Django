@@ -11,15 +11,15 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import environ, os
+import os
 
-env = environ.Env(DEBUG=(bool, False))# set casting, default value
+env = os.environ.Env(DEBUG=(bool, False))# set casting, default value
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) #Path(__file__).resolve().parent.parent
 PRJ_DIR = os.path.dirname(BASE_DIR)
 
-environ.Env.read_env(os.path.join(PRJ_DIR, '.env_treesdb'))
+os.environ.Env.read_env(os.path.join(PRJ_DIR, '.env_treesdb'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/

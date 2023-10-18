@@ -9,13 +9,6 @@ from .models import art, planta, bild
 from django.db.models.functions import StrIndex
 from .forms import Search_Form, Search_Form_Advanced
 
-
-import environ, os
-env = environ.Env(DEBUG=(bool, False))
-PRJ_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-environ.Env.read_env(os.path.join(PRJ_DIR, '.env'))
-STATIC_PATH = env('STATIC_PATH')
-
 def view(request, template_, context_):
   template = loader.get_template(template_)
   context=context_

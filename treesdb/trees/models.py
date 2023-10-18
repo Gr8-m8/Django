@@ -1,10 +1,10 @@
 from django.db.models import *
 from django.core.files.storage import FileSystemStorage
 
-import environ, os
-env = environ.Env(DEBUG=(bool, False))
+import os
+env = os.environ.Env(DEBUG=(bool, False))
 PRJ_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-environ.Env.read_env(os.path.join(PRJ_DIR, '.env'))
+os.environ.Env.read_env(os.path.join(PRJ_DIR, '.env'))
 STATIC_PATH = env('STATIC_PATH')
 
 pth=f"{env('MEDIA_PATH')}/img_trees/"
