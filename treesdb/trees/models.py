@@ -114,7 +114,7 @@ class planta(Model):
 
     
 class bild(Model):
-    pvnlink = ForeignKey(planta, null=False, on_delete=CASCADE)
+    pvnlink = ForeignKey(planta, blank=True, null=True, on_delete=CASCADE)
     artlink = ForeignKey(art, blank=True, null=True, on_delete=CASCADE)
     img = ImageField(storage=IMG_TREES) #'static_trees/img_trees'#'trees/static/img_trees'
     namn = CharField(null=True, editable=False, max_length=255)
@@ -126,4 +126,4 @@ class bild(Model):
         super(bild, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.pvnlink.pvn}:{self.namn}"
+        return f"'{self.namn}':['{self.pvnlink.pvn}','{self.artlink.namn}']"
