@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='bild',
             name='img',
-            field=models.ImageField(storage=django.core.files.storage.FileSystemStorage(location='C:\\\\Users\\\\marti\\\\Desktop\\\\Django\\\\trees_db Project\\\\media\\\\/img_trees/'), upload_to=''),
+            field=models.ImageField(storage=django.core.files.storage.FileSystemStorage(location='C:\\\\Users\\\\marti\\\\Desktop\\\\Django\\\\trees_db_Project\\\\media\\\\/img_trees/'), upload_to=''),
         ),
         migrations.AlterField(
             model_name='bild',

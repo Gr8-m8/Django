@@ -19,7 +19,7 @@ env = environ.Env(DEBUG=(bool, False))# set casting, default value
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) #Path(__file__).resolve().parent.parent
 PRJ_DIR = os.path.dirname(BASE_DIR)
 
-environ.Env.read_env(os.path.join(PRJ_DIR, '.env'))
+environ.Env.read_env(os.path.join(PRJ_DIR, '.env_treesdb'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/

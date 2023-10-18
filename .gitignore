@@ -1,5 +1,5 @@
 .env
 
-*.bat
+.bat
 
 t_env/**
