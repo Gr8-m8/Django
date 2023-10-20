@@ -1,14 +1,7 @@
+from django.conf import settings
 from django.db.models import *
 from django.core.files.storage import FileSystemStorage
 
-import os
-env = os.environ.Env(DEBUG=(bool, False))
-PRJ_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-os.environ.Env.read_env(os.path.join(PRJ_DIR, '.env'))
-STATIC_PATH = env('STATIC_PATH')
-
-pth=f"{env('MEDIA_PATH')}/img_trees/"
-IMG_TREES=FileSystemStorage(location=pth)
 
 #statisk
 class art(Model): 
@@ -114,9 +107,9 @@ class planta(Model):
 
     
 class bild(Model):
+    img = ImageField(storage=FileSystemStorage(location=settings.IMG_TREES))
     pvnlink = ForeignKey(planta, blank=True, null=True, on_delete=CASCADE)
     artlink = ForeignKey(art, blank=True, null=True, on_delete=CASCADE)
-    img = ImageField(storage=IMG_TREES) #'static_trees/img_trees'#'trees/static/img_trees'
     namn = CharField(null=True, editable=False, max_length=255)
 
     def save(self, *args, **kwargs):
@@ -126,4 +119,4 @@ class bild(Model):
         super(bild, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"'{self.namn}':['{self.pvnlink.pvn}','{self.artlink.namn}']"
+        return f"'{self.namn}':['{self.pvnlink}','{self.artlink}']"
