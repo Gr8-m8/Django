@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db.models import *
 from django.core.files.storage import FileSystemStorage
 
