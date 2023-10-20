@@ -18,6 +18,8 @@ def landing(request):
   search_form=Search_Form()
   search_form_advanced=Search_Form_Advanced()
 
+  print("IMG_TREES",settings.IMG_TREES)
+
   return view(request, 'landing.html', 
   {
     "search_form":search_form,

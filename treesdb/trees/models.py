@@ -107,7 +107,7 @@ class planta(Model):
 
     
 class bild(Model):
-    img = ImageField(storage=FileSystemStorage(location=settings.IMG_TREES))
+    img = ImageField(upload_to='img_trees/')
     pvnlink = ForeignKey(planta, blank=True, null=True, on_delete=CASCADE)
     artlink = ForeignKey(art, blank=True, null=True, on_delete=CASCADE)
     namn = CharField(null=True, editable=False, max_length=255)

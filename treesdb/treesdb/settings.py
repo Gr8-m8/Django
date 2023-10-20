@@ -131,7 +131,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = env('MEDIA_PATH')
 MEDIA_URL = '/media/'
 
-IMG_TREES=f"{MEDIA_ROOT}/img_trees/"
+IMG_TREES=f"media/img_trees/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
